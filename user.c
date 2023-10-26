@@ -119,15 +119,15 @@ void cleanup()
     // delete the pid corresponding to the user
     for (int i = 0; i < MAX_CLIENTS; ++i)
     {
+        if (data->pids[i] != 0)
+        {
+            emptyPids = 0;
+        }
         if (data->pids[i] == getpid())
         {
             data->pids[i] = 0;
             data->activeClients--;
             break;
-        }
-        else if (data->pids[i] != 0)
-        {
-            emptyPids = 0;
         }
     }
     if (emptyPids)
